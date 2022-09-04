@@ -245,6 +245,7 @@ request = function(specs)
     compressed = true,
     dry_run = false,
     dump = util.gen_dump_path(),
+    command = "curl",
   }, specs))
 
   if opts.dry_run then
@@ -252,7 +253,7 @@ request = function(specs)
   end
 
   local job = J:new {
-    command = "curl",
+    command = opts.command,
     args = args,
     on_exit = function(j, code)
       if code ~= 0 then
